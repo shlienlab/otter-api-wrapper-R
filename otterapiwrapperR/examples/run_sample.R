@@ -2,7 +2,10 @@ library(otterapiwrapperR)
 
 otter_obj <- otter_api(api_token="<your API token>")
 
-result <- otter_run_sample_path(otter_obj, file_path="examples/data/rhabdomyosarcoma.genes.hugo.results", model_name = 'otter')
+result <- otter_run_sample_path(
+  otter_obj, file_path="examples/data/rhabdomyosarcoma.genes.hugo.results", model_name = 'otter',
+  wait_for_result=TRUE, timeout=300, share_with = list('<email to share results with>')
+)
 df_result <- result$df_result
 inference_id <- result$inference_id
 

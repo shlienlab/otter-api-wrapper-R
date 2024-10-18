@@ -52,3 +52,6 @@ Thumbs.db
 otterapiwrapperR/.Rhistory
 *.Rcheck
 *.tar.gz
+
+*.tgz
+*.tar.gz
