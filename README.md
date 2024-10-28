@@ -14,14 +14,12 @@ Otter is a series of deep learning models aimed at classifying RNA TPM counts ag
 This is an R wrapper for the Otter API. This wrapper helps you run the API available at https://otter.ccm.sickkids.ca/.
 
 
-![CRAN/METACRAN Version](https://img.shields.io/cran/v/otterapiwrapperR)
-
 ## Installation 
 
 ```R
 install.packages("rjson")
 install.packages("plotly")
-install.packages("otterapiwrapperR")
+remotes::install_github("shlienlab/otter-api-wrapper-R")
 ```
 
 ## Quickstart
