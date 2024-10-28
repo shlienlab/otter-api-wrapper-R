@@ -40,6 +40,7 @@ otter_api <- function(
 #' @param atlas_version not used for now, but kept here for compatibility with future versions of the atlas.
 #' @param sample_name Name of the sample.
 #' @param share_with List of emails to share the sample with.
+#' @param save Checking this to TRUE allows us to save the files sent to the server for later research.
 #' @param wait_for_result Whether to submit the job and move on or wait for the results.
 #' @param timeout When waiting, time to timeout.
 #' @return Dataframe of prediction or task id and inference id.
@@ -51,6 +52,7 @@ otter_run_sample_path <- function(
     atlas_version=NULL,
     sample_name=NULL,
     share_with=NULL,
+    save=FALSE,
     wait_for_result=TRUE,
     timeout=300
 ) {
@@ -62,7 +64,7 @@ otter_run_sample_path <- function(
 
   otter_run_sample_res <- otter_run_sample(
     otter_obj, df, model_name, atlas_version, sample_name,
-    share_with, wait_for_result, timeout
+    share_with, save, wait_for_result, timeout
   )
   return_data <- NULL
   return_data$df_result <- otter_run_sample_res$df_result
@@ -81,6 +83,7 @@ otter_run_sample_path <- function(
 #' @param atlas_version not used for now, but kept here for compatibility with future versions of the atlas.
 #' @param sample_name Name of the sample.
 #' @param share_with List of emails to share the sample with.
+#' @param save Checking this to TRUE allows us to save the files sent to the server for later research.
 #' @param wait_for_result Whether to submit the job and move on or wait for the results.
 #' @param timeout When waiting, time to timeout.
 #' @return Dataframe of prediction or task id and inference id.
@@ -92,6 +95,7 @@ otter_run_sample <- function(
     atlas_version,
     sample_name,
     share_with,
+    save,
     wait_for_result,
     timeout
 ) {
@@ -103,7 +107,8 @@ otter_run_sample <- function(
         gene_name = df$gene_name
       ),
       name = sample_name,
-      share_with = share_with
+      share_with = share_with,
+      save = save
     )
 
   form <- httr2::request(sprintf(
