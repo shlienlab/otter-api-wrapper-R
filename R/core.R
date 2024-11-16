@@ -107,9 +107,11 @@ otter_run_sample <- function(
         gene_name = df$gene_name
       ),
       name = sample_name,
-      share_with = share_with,
       save = save
     )
+  if (!is.null(share_with)) {
+    post_data = append(post_data, list(share_with=share_with))
+  }
 
   form <- httr2::request(sprintf(
     "%s/inference",
